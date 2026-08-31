@@ -48,6 +48,54 @@ default to the repo.**
 
 ---
 
+## The commission the handoff must transmit
+
+🚨 **THE READER'S CONTEXT WINDOW IS THE SCARCEST RESOURCE IN THE WHOLE OPERATION, AND THE HANDOFF MUST
+SAY SO BEFORE IT SAYS ANYTHING ELSE.** An agent that spends its context writing code runs out partway
+through and hands off badly, and **a bad handoff costs the next session more than the code was worth.**
+**The chain is only as good as its weakest document.**
+
+**So the handoff must establish, explicitly, that the reader's job is to orchestrate — not to implement.**
+
+### Write these into the document. Do not assume they are obvious.
+
+- 🚨 **ORCHESTRATE; DO NOT CODE.** **The reader's tokens go on briefing sub-agents and reviewing what they
+  produce.** Implementation is delegated. ⚠️ **An orchestrator that "just quickly fixes" something has
+  spent context on the one thing it could have bought for free.**
+- 🚨 **PARALLELISE AS HARD AS THE WORK ALLOWS. More agents, smaller chunks.** A task that looks like one
+  job is usually three that can run at once. **Bias toward dispatching too many rather than too few** —
+  an idle agent costs nothing and a serialised queue costs the session.
+- 🚨 **SPLIT ON FILE CONTENTION, NOT ON SUBJECT MATTER.** ⚠️ **This is the rule everyone gets wrong.**
+  Two tickets on the same topic often touch different files and run fine together; two tickets on
+  unrelated topics that both edit one file **cannot**, no matter what the dependency graph says.
+  🚨 **"Blocked by: none" is true of DEPENDENCIES and false of PARALLELISM.** **Derive the contention set
+  yourself, from the files each piece of work must touch, and write it into the handoff as its own
+  graph** (§9). **It is invisible everywhere else.**
+- 🚨 **A GREEN REPORT IS A CLAIM, NOT A FACT.** **Verify it yourself: the diff, the counts, and — most
+  of all — the specific thing the agent says it did NOT touch.** ⚠️ **A RED REPORT IS ALSO A CLAIM.**
+  Check the environment before you believe a failure; a wrong runtime or a stale artifact invents
+  failures that look exactly like real ones.
+- 🚨 **QUALITY IS THE ORCHESTRATOR'S JOB, AND IT IS DONE IN THE BRIEF.** A sub-agent will do what the
+  brief says, precisely, including the wrong things. **Every brief carries: the standing contract, the
+  ref, the setup recipe, the prohibitions, the files live peers are holding by name, an explicit cleanup
+  contract to be answered item by item, and what "done" includes beyond "tests pass".**
+- 🚨 **GROOM BEFORE YOU BUILD, AND USE A DIFFERENT AGENT FOR EACH.** **A filed ticket is a claim, not a
+  fact.** A groomer verifies every assertion at the file and line, corrects the ticket in place, and
+  **implements nothing** — one that also builds will rationalise its own ticket.
+- 🚨 **DEMAND EVIDENCE, NOT ASSURANCE.** *"A test pins this"* is a claim to verify **at the assertion**.
+  Require: **watch the red and say why it was the RIGHT failure · mutation-prove the harness · REVERT
+  the mutation and state that you did.** ⚠️ **A mutation kill proves a test CAN fail; a red proves it was
+  written BEFORE the behaviour existed. They are different claims.**
+- 🚨 **BUILD BRIEFS THAT INVITE CORRECTION.** End every one with **"I expect to be corrected — tell me
+  which of my claims did not hold."** ⚠️ **Downstream agents correcting the orchestrator is the
+  highest-yield thing that happens in this pattern**, and it only happens if you ask for it in words.
+
+⚠️ **AND SAY WHAT THE READER SHOULD DELEGATE EVEN WHEN IT FEELS FASTER TO DO IT.** Re-running the gate,
+reading a long file, auditing a board, updating tickets — **all of it can be delegated, with the results
+read back from files rather than from the agent's summary.** **Delegate the work; keep the judgement.**
+
+---
+
 ## The seven non-negotiables
 
 These are what make a handoff survive contact with the next session. Everything else is arrangement.

@@ -31,5 +31,10 @@ The skill encodes what stopped that happening: re-measure every figure before wr
 could not verify, lead with what needs the human, give discovery commands rather than values, and never
 pin the document to an identifier it invalidates by existing.
 
+It also encodes the operating model that made the chain work: **the incoming agent orchestrates and
+does not code.** Its context is the scarce resource, so it spends it briefing sub-agents and reviewing
+what they produce — parallelising hard, **splitting on file contention rather than subject matter**, and
+treating every green report as a claim to be verified rather than a fact.
+
 ⚠️ It is deliberately **not** a conversation summariser. A summary compacts what was said; a handoff
 carries what is true, and most of that was established by tool calls rather than discussion.

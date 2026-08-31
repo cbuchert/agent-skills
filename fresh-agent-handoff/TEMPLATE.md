@@ -27,9 +27,18 @@ seventeen slice issues; three open defects with measured diagnoses; and live dev
 <A table: path → why, one line each. Include the standing agent contract, the authoritative decisions
 file, the running log, the spec. Mark anything SUPERSEDED in full, loudly.>
 
-## 2. Your commission
-<What the reader is for, and what they are not for. The working rules that shaped this session:
-how to split work, what a green report is worth, what habit pays best.>
+## 2. Your commission — orchestrate, do not code
+🚨 **STATE THIS EXPLICITLY. IT IS THE MOST IMPORTANT PARAGRAPH IN THE DOCUMENT.**
+<- The reader's context is the scarce resource: tokens go on BRIEFING and REVIEWING, not implementing.
+ - Parallelise hard. More agents, smaller chunks. Bias toward too many rather than too few.
+ - 🚨 SPLIT ON FILE CONTENTION, NOT SUBJECT MATTER. "Blocked by: none" is true of dependencies and
+   FALSE of parallelism. Point at the contention graph in §9.
+ - A green report is a CLAIM — verify the diff, the counts, and the thing the agent says it did NOT
+   touch. A red report is also a claim; check the environment first.
+ - Groom before build, with a DIFFERENT agent for each. A filed ticket is a claim, not a fact.
+ - Demand evidence: the red and why it was the right failure, the mutation proof, and its revert.
+ - End every brief with "tell me which of my claims did not hold".
+ - Delegate the gate runs, the long reads, the board audits — read results back from FILES.>
 
 ## 3. 🚨 WHAT NEEDS <HUMAN> — first, because it is the bottleneck
 <Numbered. For each: what is blocked · the decision · your recommendation. Note which are one sentence
@@ -57,8 +66,13 @@ Derive deltas as equations. Name the counting rules that surprise — anything t
 without a test being written.>
 
 ## 9. The board
-<What landed. What is filed. What is blocked and by what. 🚨 File contention as its own graph —
-it is invisible in the blocked-by field and it is what actually serialises work.>
+<What landed. What is filed. What is blocked and by what.
+🚨 FILE CONTENTION AS ITS OWN GRAPH, DERIVED BY YOU FROM THE FILES EACH PIECE MUST TOUCH — never copied
+from a previous handoff, and never inferred from the blocked-by field, where it does not appear.
+List every file two or more pieces of work edit, and who contends on it. Say which may run in
+parallel and which must be sequenced. ⚠️ Verify the set rather than inheriting it: contention sets
+in this epic were repeatedly overstated in one direction and understated in another, and a decision
+taken mid-session can CREATE contention that did not exist when the set was measured.>
 
 ## 10. The pattern that pays best
 <How errors got caught. Name specific corrections that came UP the chain, including your own.
@@ -91,7 +105,12 @@ established, not what it did.>
 **Read `<path to handoff>` first, in full.** <Then the other required reading, in order, with what is
 authoritative and what is superseded.>
 
-**Your commission: <the one-line job>.**
+**Your commission: orchestrate and ensure quality — DO NOT CODE.** <Your tokens go on briefing
+sub-agents and reviewing what they produce. Parallelise hard: more agents, smaller chunks.
+🚨 SPLIT ON FILE CONTENTION, NOT SUBJECT MATTER. A sub-agent reporting green is a claim, not a fact —
+verify the diff, the counts, and the specific thing it says it did NOT touch. Groom every ticket
+before a builder sees it, with a different agent. End every brief with "tell me which of my claims
+did not hold".>
 
 🚨 **<THE MOST DANGEROUS THING, STATED AS A LIE THE ENVIRONMENT TELLS.>**
 <e.g. wrong runtime version that invents failures; a config that makes a check silently pass;
@@ -118,6 +137,8 @@ gone, what is shared, what must not be reset.>
 
 ## Checks before you hand off
 
+- [ ] **The commission says ORCHESTRATE, DO NOT CODE** — explicitly, in §2 and in the warmup
+- [ ] **File-contention graph derived by you**, not inherited, and marked parallel vs sequenced
 - [ ] Every count re-measured, and the commit quoted beside it
 - [ ] Everything unverifiable **marked as unverifiable in the document**
 - [ ] What needs the human is **first**, numbered, with recommendations
