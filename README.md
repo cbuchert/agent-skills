@@ -4,15 +4,34 @@ Skills for Claude Code, kept in git so they can be versioned, reviewed and share
 
 ## Install
 
-Skills live in `~/.claude/skills/<name>/`. Each top-level directory here mirrors that layout, so
-installing is a copy or a symlink:
+Skills are installed in **two hops**, so the repo stays the source of truth and one store serves every
+agent tool:
 
 ```sh
-ln -s "$PWD/fresh-agent-handoff" ~/.claude/skills/fresh-agent-handoff
+# 1. the tool-agnostic store points at this repo (absolute)
+ln -s "$PWD/fresh-agent-handoff" ~/.agents/skills/fresh-agent-handoff
+
+# 2. Claude Code points at the store (relative, matching its siblings)
+cd ~/.claude/skills && ln -s ../../.agents/skills/fresh-agent-handoff fresh-agent-handoff
 ```
 
-Symlinking keeps the installed skill in step with the repo. Copy instead if you want them to drift
-independently.
+**Why not link `~/.claude/skills` straight at the repo?** Because `~/.agents/skills/` is the canonical
+store — every other skill is reached through it, and other agent tools point at the same directory. A
+skill wired directly into `~/.claude/skills` works, but it is the only one shaped differently, and that
+is what gets "tidied" later by someone who does not know why.
+
+**Verify the chain resolves to the repo:**
+
+```sh
+readlink -f ~/.claude/skills/fresh-agent-handoff   # → …/agent-skills/fresh-agent-handoff
+```
+
+Editing here updates the installed skill with no re-copy. **No restart is needed** — a newly linked skill
+is picked up by the running session.
+
+⚠️ These skills set `disable-model-invocation: true`, so they are **user-invoked only**: type
+`/fresh-agent-handoff`. An agent cannot fire one on its own, which is deliberate — writing a handoff is
+expensive and explicit.
 
 ## Skills
 
