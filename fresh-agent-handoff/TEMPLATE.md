@@ -137,15 +137,18 @@ gone, what is shared, what must not be reset.>
 
 ## Checks before you hand off
 
-- [ ] **The commission says ORCHESTRATE, DO NOT CODE** — explicitly, in §2 and in the warmup
-- [ ] **File-contention graph derived by you**, not inherited, and marked parallel vs sequenced
-- [ ] Every count re-measured, and the commit quoted beside it
-- [ ] Everything unverifiable **marked as unverifiable in the document**
-- [ ] What needs the human is **first**, numbered, with recommendations
-- [ ] The predecessor's specific errors named in the accuracy note
-- [ ] **No tip SHA in either artifact** — discovery commands instead
-- [ ] Every trap is an incident that actually happened
-- [ ] Nothing relayed that you did not verify, unless marked
-- [ ] Empty sections deleted, not left as headings
+**Each one is checkable — you can tell done from not-done.**
+
+- [ ] **The commission says ORCHESTRATE, DO NOT CODE** — explicitly, in §2 *and* in the warmup
+- [ ] **File-contention graph derived by you** from the files each piece touches, not inherited, and
+      marked parallel vs sequenced
+- [ ] **Decay (§1):** every figure traceable to a command you ran this session · every value that could
+      go stale replaced by its discovery command · **no tip SHA in either artifact**
+- [ ] Everything unverifiable **marked as unverifiable in the text**, not silently dropped
+- [ ] What needs the human is **first**, numbered, with recommendations — and what is *no longer* open
+      is listed too
+- [ ] The predecessor's **specific** wrong claim named in the accuracy note
+- [ ] Every trap is an incident that actually happened; nothing relayed unverified
+- [ ] Empty sections **deleted, not left as headings** — an empty heading is a claim
 - [ ] Warmup on the clipboard, **verified by round-trip**, byte count stated
 - [ ] Both artifacts committed and pushed; **tip re-read afterwards**
